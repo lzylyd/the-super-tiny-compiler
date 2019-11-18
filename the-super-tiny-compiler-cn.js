@@ -98,47 +98,38 @@
  */
 
 /**
- * Most compilers break down into three primary stages: Parsing, Transformation,
- * and Code Generation
+ * 大部分的编译器都可以分为三个部分: 解析,翻译以及代码生成
  *
+ * 1. *解析* 是将原本的代码转化成抽象码
  * 1. *Parsing* is taking raw code and turning it into a more abstract
  *    representation of the code.
- *
+ * 2. *翻译* 将抽象码转化为编译器理解的代码
  * 2. *Transformation* takes this abstract representation and manipulates to do
  *    whatever the compiler wants it to.
  *
+ * 3. *代码生成* 将转化吼得代码变成新的代码
  * 3. *Code Generation* takes the transformed representation of the code and
  *    turns it into new code.
  */
 
 /**
- * Parsing
+ * 解析
  * -------
  *
- * Parsing typically gets broken down into two phases: Lexical Analysis and
- * Syntactic Analysis.
+ * 解析一般分为两个阶段:词法分析和语法分析
  *
- * 1. *Lexical Analysis* takes the raw code and splits it apart into these things
- *    called tokens by a thing called a tokenizer (or lexer).
+ * 1. *词法分析* 通过被称为分词器( tokenizer )或者被称为(记号赋予器)的工具,将语句切分为 ( token ）
  *
- *    Tokens are an array of tiny little objects that describe an isolated piece
- *    of the syntax. They could be numbers, labels, punctuation, operators,
- *    whatever.
+ *    token是一个包含了一些对象的数组，用于描述语句间关系,它可以是数字,标签,标点符号,操作符,等等
  *
- * 2. *Syntactic Analysis* takes the tokens and reformats them into a
- *    representation that describes each part of the syntax and their relation
- *    to one another. This is known as an intermediate representation or
- *    Abstract Syntax Tree.
+ * 2. *语法分析* 语法分析将 token 格式化为语法之间的关系,一遍被称为抽象语法树(AST)
  *
- *    An Abstract Syntax Tree, or AST for short, is a deeply nested object that
- *    represents code in a way that is both easy to work with and tells us a lot
- *    of information.
+ *    一个抽象语法树(AST),是一个深度嵌套的对象,它以一种简单易懂的方式告诉了我们关于代码的很多信息
  *
- * For the following syntax:
+ * 下面的语句:
  *
  *   (add 2 (subtract 4 2))
- *
- * Tokens might look something like this:
+ * token可能看上去像这样:
  *
  *   [
  *     { type: 'paren',  value: '('        },
@@ -152,8 +143,7 @@
  *     { type: 'paren',  value: ')'        },
  *   ]
  *
- * And an Abstract Syntax Tree (AST) might look like this:
- *
+ * 转换为抽象语法树可能像这样:
  *   {
  *     type: 'Program',
  *     body: [{
@@ -178,15 +168,13 @@
  */
 
 /**
+ * 翻译
  * Transformation
  * --------------
  *
- * The next type of stage for a compiler is transformation. Again, this just
- * takes the AST from the last step and makes changes to it. It can manipulate
- * the AST in the same language or it can translate it into an entirely new
- * language.
+ * 编译器的下一步便是翻译,它不过是将上一步最后的 AST 转换为同一种语言的表示或者把它转换为一种全新的语言
  *
- * Let’s look at how we would transform an AST.
+ * 让我们来看看如何转换一个 AST
  *
  * You might notice that our AST has elements within it that look very similar.
  * There are these objects with a type property. Each of these are known as an
