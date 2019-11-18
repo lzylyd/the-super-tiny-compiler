@@ -76,16 +76,14 @@
  */
 
 /**
- * Today we're going to write a compiler together. But not just any compiler... A
- * super duper teeny tiny compiler! A compiler that is so small that if you
- * remove all the comments this file would only be ~200 lines of actual code.
+ * 今天,我们来写一个编译器,但不仅仅是一个编译器......而是一个
+ * 超级,迷你,简单,的编译器!一个你小到你删除了所有注释 只剩下200多行运行代码的编译器！
  *
- * We're going to compile some lisp-like function calls into some C-like
- * function calls.
+ * 我们将把一些 lisp-like 的函数调用编译成 C-like 的函数调用
  *
- * If you are not familiar with one or the other. I'll just give you a quick intro.
+ * 如果你对他们其中的一个或者两个都不熟悉 我将会给你一个快速的简介
  *
- * If we had two functions `add` and `subtract` they would be written like this:
+ * 如果你有两个函数 `add` 和 `subtract` 他们的写法如下所示
  *
  *                  LISP                      C
  *
@@ -93,11 +91,10 @@
  *   4 - 2          (subtract 4 2)            subtract(4, 2)
  *   2 + (4 - 2)    (add 2 (subtract 4 2))    add(2, subtract(4, 2))
  *
- * Easy peezy right?
+ * 看上去是不是很简单？
  *
- * Well good, because this is exactly what we are going to compile. While this
- * is neither a complete LISP or C syntax, it will be enough of the syntax to
- * demonstrate many of the major pieces of a modern compiler.
+ * 很好,因为这个是我们将要编译的东西,尽管这个并不严格按照 C 或者 lisp 的语法,但是用来
+ * 演示现代编译器的一部分是足够了
  */
 
 /**
@@ -467,7 +464,7 @@ function tokenizer(input) {
             }
 
             // After that we push our `number` token to the `tokens` array.
-            tokens.push({ type: 'number', value });
+            tokens.push({type: 'number', value});
 
             // And we continue on.
             continue;
@@ -498,7 +495,7 @@ function tokenizer(input) {
             char = input[++current];
 
             // And add our `string` token to the `tokens` array.
-            tokens.push({ type: 'string', value });
+            tokens.push({type: 'string', value});
 
             continue;
         }
@@ -523,7 +520,7 @@ function tokenizer(input) {
             }
 
             // And pushing that value as a token with the type `name` and continuing.
-            tokens.push({ type: 'name', value });
+            tokens.push({type: 'name', value});
 
             continue;
         }
@@ -1027,7 +1024,7 @@ function codeGenerator(node) {
 
 function compiler(input) {
     let tokens = tokenizer(input);
-    let ast    = parser(tokens);
+    let ast = parser(tokens);
     let newAst = transformer(ast);
     let output = codeGenerator(newAst);
 
